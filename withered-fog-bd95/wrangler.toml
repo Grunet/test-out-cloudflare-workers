@@ -13,6 +13,6 @@ bucket_name = 'test1'
 
 [durable_objects]
 bindings = [
-  { name = "DURABLE_OBJECT_NAME", class_name = "R2Reader" } # Binding to our DurableObjectExample class
+  { name = "DURABLE_OBJECT_NAME", class_name = "R2Cache" } # Binding to our DurableObjectExample class
 ]
 
