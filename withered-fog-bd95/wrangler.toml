@@ -11,3 +11,8 @@ crons = [ ]
 binding = 'MY_BUCKET' # <~ valid JavaScript variable name
 bucket_name = 'test1'
 
+[durable_objects]
+bindings = [
+  { name = "DURABLE_OBJECT_NAME", class_name = "R2Reader" } # Binding to our DurableObjectExample class
+]
+

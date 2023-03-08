@@ -3,7 +3,21 @@ export default {
 		const url = new URL(request.url)
 
 		if (url.pathname === "/admin") {
-			return new Response("Admin page");
+			// parse the URL and get Durable Object ID from the URL
+			const url = new URL(request.url)
+			const idFromUrl = url.pathname.slice(1)
+
+			// construct the Durable Object ID, use the ID from pathname or create a new unique id
+			const doId = idFromUrl ? env.DURABLE_OBJECT_NAME.idFromString(idFromUrl) : env.DURABLE_OBJECT_NAME.newUniqueId()
+ 
+			// get the Durable Object stub for our Durable Object instance
+			const stub = env.DURABLE_OBJECT_NAME.get(doId)
+	 
+			// pass the request to Durable Object instance
+			const res = await stub.fetch(request);
+			const count = await res.json();
+
+			return new Response(`Admin page ${count}`);
 		}
 
 		const html = `<!DOCTYPE html>
@@ -21,3 +35,25 @@ export default {
 		});
 	},
 };
+
+export class R2Cache {
+	constructor(state, env) {
+	  this.state = state;
+	  // `blockConcurrencyWhile()` ensures no requests are delivered until
+	  // initialization completes.
+	  this.state.blockConcurrencyWhile(async () => {
+		let stored = await this.state.storage.get("value");
+		// After initialization, future reads do not need to access storage.
+		this.value = stored || 0;
+	  });
+	}
+  
+	// Handle HTTP requests from clients.
+	async fetch(request) {
+	  // use this.value rather than storage
+	  return {
+		"theValue": this.value,
+	  }
+	}
+  }
+  
