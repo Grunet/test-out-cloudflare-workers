@@ -1,5 +1,10 @@
 export default {
 	async fetch(request, env) {
+		const url = new URL(request.url)
+
+		if (url.pathname === "/admin") {
+			return new Response("Admin page");
+		}
 
 		const html = `<!DOCTYPE html>
 		<body>
