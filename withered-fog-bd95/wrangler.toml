@@ -16,3 +16,6 @@ bindings = [
   { name = "DURABLE_OBJECT_NAME", class_name = "R2Cache" } # Binding to our DurableObjectExample class
 ]
 
+[[migrations]]
+tag = "v1" # Should be unique for each entry
+new_classes = ["R2Cache"] # Array of new classes
