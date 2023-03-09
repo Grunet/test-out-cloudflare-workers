@@ -51,7 +51,11 @@ export class R2Cache {
 	  return new Response(JSON.stringify({
 			"theValue": this.value,
 		}
-	  ));
+	  ), {
+		headers: {
+		  "content-type": "application/json"
+		}
+	  });
   }
 }
   
