@@ -69,8 +69,8 @@ export class R2Cache {
 				chunks.push(chunk);
 			}
 
-			const buffer = Buffer.concat(chunks);
-			const json = buffer.toString();
+			const text= TextDecoder.decode(chunks);
+			const json = JSON.parse(text);
 
 			return json;
 		}));
