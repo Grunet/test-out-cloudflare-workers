@@ -49,7 +49,9 @@ export class R2Cache {
 	  // use this.value rather than storage
 	  console.log(JSON.stringify(request));
 
-	  return 5;
+	  return new Response(JSON.stringify(9999), {
+		headers: { 'Content-Type': 'application/json'},
+	});
   }
 }
   
