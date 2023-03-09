@@ -35,6 +35,8 @@ export default {
 
 export class R2Cache {
 	constructor(state, env) {
+		this.env = env;
+
 	  this.state = state;
 	  // `blockConcurrencyWhile()` ensures no requests are delivered until
 	  // initialization completes.
@@ -47,7 +49,7 @@ export class R2Cache {
   
 	// Handle HTTP requests from clients.
 	async fetch(request) {
-		const list = await env.MY_BUCKET.list();
+		const list = await this.env.MY_BUCKET.list();
 		console.log(list);
 
 		const responseObj = list; //this.value;
