@@ -3,18 +3,15 @@ export default {
 		const url = new URL(request.url)
 
 		if (url.pathname === "/admin") {
-			// parse the URL and get Durable Object ID from the URL
-			const url = new URL(request.url)
-			const idFromUrl = url.pathname.slice(1)
 
-			// construct the Durable Object ID, use the ID from pathname or create a new unique id
-			const doId = idFromUrl ? env.DURABLE_OBJECT_NAME.idFromString(idFromUrl) : env.DURABLE_OBJECT_NAME.newUniqueId()
+			// construct the Durable Object ID, use the ID from pathname
+			const doId = env.DURABLE_OBJECT_NAME.idFromString("r2cacheinstance");
  
 			// get the Durable Object stub for our Durable Object instance
 			const stub = env.DURABLE_OBJECT_NAME.get(doId)
 	 
 			// pass the request to Durable Object instance
-			const res = await stub.fetch(request);
+			const res = await stub.fetch();
 			const count = await res.json();
 
 			return new Response(`Admin page ${count}`);
