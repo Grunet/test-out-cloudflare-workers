@@ -48,10 +48,10 @@ export class R2Cache {
 	async fetch(request) {
 	  // use this.value rather than storage
 
-	  return new Response({
-		"theValue": this.value,
-	  }
-	);
+	  return new Response(JSON.stringify({
+			"theValue": this.value,
+		}
+	  ));
   }
 }
   
