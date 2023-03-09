@@ -47,9 +47,11 @@ export class R2Cache {
 	// Handle HTTP requests from clients.
 	async fetch(request) {
 	  // use this.value rather than storage
-	  return {
+
+	  return new Response({
 		"theValue": this.value,
 	  }
-	}
+	);
   }
+}
   
