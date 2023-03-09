@@ -58,11 +58,16 @@ export class R2Cache {
 	// Handle HTTP requests from clients.
 	async fetch(request) {
 		const list = await this.env.MY_BUCKET.list();
-		// console.log(list);
-
-		const responseObj = this.value; //this.value;
 
 		console.log(list);
+
+		const allSettledRes = await Promise.allSettled(list.objects.map(({key}) => {
+			return this.env.MY_BUCKET.get(key);
+		}));
+
+		console.log(allSettledRes);
+
+		const responseObj = this.value; //this.value;
 
 	  return new Response(JSON.stringify(responseObj), {
 		headers: { 'Content-Type': 'application/json'},
