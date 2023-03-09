@@ -4,8 +4,7 @@ export default {
 
 		if (url.pathname === "/admin") {
 
-			// construct the Durable Object ID, use the ID from pathname
-			const doId = env.DURABLE_OBJECT_NAME.idFromString("r2cacheinstance");
+			const doId = env.DURABLE_OBJECT_NAME.idFromName("r2cacheinstance");
  
 			// get the Durable Object stub for our Durable Object instance
 			const stub = env.DURABLE_OBJECT_NAME.get(doId)
