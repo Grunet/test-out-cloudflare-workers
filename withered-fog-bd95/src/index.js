@@ -46,14 +46,14 @@ export class R2Cache {
 		this.value = stored || 0;
 	  });
 
-	  this.state.storage.setAlarm(Date.now() + (10*1000));
+	//   this.state.storage.setAlarm(Date.now() + (10*1000));
 	}
 
-	alarm() {
-		this.value = this.value + 1;
+	// alarm() {
+	// 	this.value = this.value + 1;
 
-		this.state.storage.setAlarm(Date.now() + (10*1000));
-	}
+	// 	this.state.storage.setAlarm(Date.now() + (10*1000));
+	// }
   
 	// Handle HTTP requests from clients.
 	async fetch(request) {
