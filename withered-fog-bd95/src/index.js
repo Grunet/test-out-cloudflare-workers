@@ -11,9 +11,9 @@ export default {
 	 
 			// pass the request to Durable Object instance
 			const res = await stub.fetch(new Request("unused"));
-			const count = await res.json();
+			// const count = await res.json();
 
-			return new Response(`Admin page ${count}`);
+			return new Response(`Admin page ${res}`);
 		}
 
 		const html = `<!DOCTYPE html>
