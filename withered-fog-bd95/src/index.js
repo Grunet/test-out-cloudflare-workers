@@ -47,6 +47,7 @@ export class R2Cache {
 	// Handle HTTP requests from clients.
 	async fetch(request) {
 	  // use this.value rather than storage
+	  console.log(JSON.stringify(request));
 
 	  return new Response(JSON.stringify({
 			"theValue": this.value,
