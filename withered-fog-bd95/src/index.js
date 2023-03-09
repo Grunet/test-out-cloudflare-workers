@@ -63,7 +63,16 @@ export class R2Cache {
 
 		const allSettledRes = await Promise.allSettled(list.objects.map(async ({key}) => {
 			const object = await this.env.MY_BUCKET.get(key);
-			return JSON.parse(object.body.toString());
+
+			const chunks = [];
+			for await (chunk of object.body) {
+				chunks.push(chunk);
+			}
+
+			const buffer = Buffer.concat(chunks);
+			const json = buffer.toString();
+
+			return json;
 		}));
 
 		console.log(allSettledRes);
