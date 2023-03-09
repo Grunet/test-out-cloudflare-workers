@@ -13,7 +13,7 @@ export default {
 			const res = await stub.fetch(new Request("unused"));
 			// const count = await res.json();
 
-			return new Response(`Admin page ${res}`);
+			return new Response(`Admin page ${JSON.stringify(res)}`);
 		}
 
 		const html = `<!DOCTYPE html>
