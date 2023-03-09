@@ -49,14 +49,7 @@ export class R2Cache {
 	  // use this.value rather than storage
 	  console.log(JSON.stringify(request));
 
-	  return request.respondWith(new Response(JSON.stringify({
-			"theValue": this.value,
-		}
-	  ), {
-		headers: {
-		  "content-type": "application/json"
-		}
-	  }));
+	  return new Response("test test s");
   }
 }
   
