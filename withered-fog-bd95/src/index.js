@@ -63,7 +63,7 @@ export class R2Cache {
 
 		const allSettledRes = await Promise.allSettled(list.objects.map(async ({key}) => {
 			const object = await this.env.MY_BUCKET.get(key);
-			return object.body.value.toString();
+			return object.body.toString();
 		}));
 
 		console.log(allSettledRes);
