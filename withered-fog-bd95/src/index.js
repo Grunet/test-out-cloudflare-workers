@@ -10,7 +10,7 @@ export default {
 			const stub = env.DURABLE_OBJECT_NAME.get(doId)
 	 
 			// pass the request to Durable Object instance
-			const res = await stub.fetch();
+			const res = await stub.fetch("unused");
 			const count = await res.json();
 
 			return new Response(`Admin page ${count}`);
