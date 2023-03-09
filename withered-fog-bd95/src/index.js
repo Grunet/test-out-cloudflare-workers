@@ -60,9 +60,9 @@ export class R2Cache {
 		const list = await this.env.MY_BUCKET.list();
 		// console.log(list);
 
-		const responseObj = list; //this.value;
+		const responseObj = this.value; //this.value;
 
-		console.log(this.value);
+		console.log(list);
 
 	  return new Response(JSON.stringify(responseObj), {
 		headers: { 'Content-Type': 'application/json'},
